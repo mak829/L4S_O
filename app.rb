@@ -12,12 +12,19 @@ get '/' do
 end
 
 post '/new' do
-    Image.create({
+    @img = Image.create({
         img_url: ""
     })
-    
+     
     if params[:file]
-        image_upload(params[:file])
+        p params[:file][:filename]
+        url = "/uploaded_images/#{@img.id}-#{params[:file][:filename]}"
+		save_path = "./public"+url
+		p save_path
+		File.open(save_path, 'wb') do |f|
+			f.write params[:file][:tempfile].read
+		end
+		@img.update_attribute(:img_url,url)
     end
     
     redirect '/'
