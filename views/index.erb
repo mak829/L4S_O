@@ -11,7 +11,7 @@
     </form>
         <% @contents.each do |content| %>
             <% unless content.img_url.empty? %>
-                <p><img src="<%= content.img_url %>"></p>
+                <a href="/<%= content.id %>/pick"><img src="<%= content.img_url %>" width="200"></a>
             <% end %>
             <span>
                 <form action="/delete/<%= content.id %>" method="post">
@@ -20,5 +20,4 @@
             </span>
         <% end %>
 </body>
-
 </html>

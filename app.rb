@@ -26,7 +26,6 @@ post '/new' do
 		end
 		@img.update_attribute(:img_url,url)
     end
-    
     redirect '/'
 end    
 
