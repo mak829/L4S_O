@@ -29,6 +29,13 @@ post '/new' do
     redirect '/'
 end    
 
+
+get '/:id/pick' do
+    @pick = Image.find_by(params[:id])
+    erb :pick
+end
+
+
 post '/delete/:id' do 
     Image.find(params[:id]).destroy
     redirect '/'

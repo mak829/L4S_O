@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>colors</title>
+</head>
+<body>
+   <canvas id="cnvs" width="1500" height="1500"></canvas>
+
+
+    <script type="text/javascript">
+                
+    var canvas = document.getElementById('cnvs');                
+    var context = canvas.getContext('2d');
+    var w = canvas.width;
+    var h = canvas.height;
+    var x = 0;
+    var y = 0;
+                
+    var image = new Image();
+                
+    image.src = "/uploaded_images/8-lifeistech_logo_color_bright.png";
+                
+    context.drawImage(image, 0, 0);
+    
+    var color = document.getElementById('color');
+    function onClick(e) {
+        var rect = e.target.getBoundingClientRect();
+        x = e.clientX - rect.left;
+        y = e.clientY - rect.top;
+        var pixel = context.getImageData(x, y, 1, 1);
+        var data = pixel.data;
+        console.log(pixel.data); // 出力：CanvasPixelArray
+    }
+
+    canvas.addEventListener('click', onClick, false);
+        
+    </script>
+</body>
+</html>
