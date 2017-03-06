@@ -7,3 +7,6 @@ end
 class Image < ActiveRecord::Base
     has_many :colors
 end
+
+class Log < ActiveRecord::Base
+end
