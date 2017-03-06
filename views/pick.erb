@@ -34,12 +34,11 @@
         var data = pixel.data;
         console.log(pixel.data); // 出力：CanvasPixelArray
         
-        numberInt = pixel.data;
+        numberInt = pixel.data;    //クリックされた要素の背景色取得
 
-        hexString = numberInt.toString(16);
+        hexString = "#"+parseInt(numberInt[0]).toString(16)+parseInt(numberInt[1]).toString(16)+parseInt(numberInt[2]).toString(16);
 
-        // hexStringは小文字で出力されるため，大文字に変換する場合は，以下のメソッドを実行
-        // hexString= hexString.toUpperCase();
+        hexString= hexString.toUpperCase();    // hexStringを大文字に変換
 
         resulut = document.getElementById("result");
         resulut.innerText = hexString;
