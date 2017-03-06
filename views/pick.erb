@@ -5,7 +5,9 @@
     <title>colors</title>
 </head>
 <body>
-   <canvas id="cnvs" width="1500" height="1500"></canvas>
+   <canvas id="cnvs" width="1500" height="500"></canvas>
+   
+   <div id="result"></div>
 
 
     <script type="text/javascript">
@@ -31,6 +33,16 @@
         var pixel = context.getImageData(x, y, 1, 1);
         var data = pixel.data;
         console.log(pixel.data); // 出力：CanvasPixelArray
+        
+        numberInt = pixel.data;
+
+        hexString = numberInt.toString(16);
+
+        // hexStringは小文字で出力されるため，大文字に変換する場合は，以下のメソッドを実行
+        // hexString= hexString.toUpperCase();
+
+        resulut = document.getElementById("result");
+        resulut.innerText = hexString;
     }
 
     canvas.addEventListener('click', onClick, false);
