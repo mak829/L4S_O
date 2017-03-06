@@ -40,3 +40,4 @@ post '/delete/:id' do
     Image.find(params[:id]).destroy
     redirect '/'
 end
+
