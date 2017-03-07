@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170306153111) do
 
-  create_table "colorcodes", force: :cascade do |t|
+  create_table "colors", force: :cascade do |t|
     t.string  "code"
     t.integer "image_id"
   end

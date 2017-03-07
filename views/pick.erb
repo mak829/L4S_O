@@ -8,11 +8,20 @@
     <canvas id="cnvs" width="1500" height="500"></canvas>
    
     <div id="result"></div>
+    
+    <h2>検索履歴</h2>
+        <table>
+        <% @logs.each do |log| %>
+            <tr>
+                <td><%= log.log %></td>
+            </tr>
+        <% end %>
+    </table>
 
 
     <script type="text/javascript">
                 
-    var canvas = document.getElementById('cnvs');                
+    var canvas = document.getElementById('cnvs');
     var context = canvas.getContext('2d');
     var w = canvas.width;
     var h = canvas.height;
@@ -21,7 +30,7 @@
                 
     var image = new Image();
                 
-    image.src = "/uploaded_images/8-lifeistech_logo_color_bright.png";
+    image.src = "/uploaded_images/<%= @pick.img_url %>";
                 
     context.drawImage(image, 0, 0);
     
@@ -42,8 +51,16 @@
 
         resulut = document.getElementById("result");
         resulut.innerText = hexString;
+        
+        var xhr= new XMLHttpRequest();
+        var param = "colorcode=" + encodeURIComponent(hexString);
+        console.log("param", hexString, param);
+        xhr.open("POST","/logs?"+param);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send();
+        
+        location.reload();
     }
-
     canvas.addEventListener('click', onClick, false);
         
     </script>
