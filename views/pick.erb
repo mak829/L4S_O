@@ -30,7 +30,7 @@
                 
     var image = new Image();
                 
-    image.src = "/uploaded_images/<%= @pick.img_url %>";
+    image.src = "<%= @pick.img_url %>";
                 
     context.drawImage(image, 0, 0);
     
