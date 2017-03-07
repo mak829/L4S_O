@@ -3,22 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>colors</title>
+    <style>
+    body{
+        background-color:#fff;
+    }
+        
+    .container{
+        margin: 0 auto;
+        width: 1000px;
+    }
+    .canvas{
+        background-color: #fff;
+        border: solid 2px #ccc;
+        text-align:center;
+    }
+    .colorcode{
+        background-color: #fff;
+        border: solid 2px #ccc;
+        text-align: center;
+        height: 50px;
+        margin-top: 25px;
+    }
+    .log{
+        background-color: #fff;
+        border: solid 2px #ccc;
+        margin-top: 25px;
+    }
+    
+    </style>
 </head>
 <body>
-    <canvas id="cnvs" width="1500" height="500"></canvas>
-   
-    <div id="result"></div>
-    
-    <h2>検索履歴</h2>
-        <table>
-        <% @logs.each do |log| %>
-            <tr>
-                <td><%= log.log %></td>
-            </tr>
-        <% end %>
-    </table>
-
-
+    <div class="container">
+        <div class="canvas">
+            <canvas id="cnvs" width="936" height="585"></canvas>
+        </div>
+        <div class="colorcode">
+            <div id="result"></div>
+        </div>
+        <div class="log">
+            <table>
+                <% @logs.each do |log| %>
+                    <tr>
+                        <td><%= log.log %></td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+    </div>
     <script type="text/javascript">
                 
     var canvas = document.getElementById('cnvs');
@@ -59,7 +90,7 @@
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send();
         
-        location.reload();
+        // location.reload();
     }
     canvas.addEventListener('click', onClick, false);
         
