@@ -2,10 +2,12 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>colors</title>
+    <title>colorpicker</title>
     <style>
     body{
-        background-color:#fff;
+        background-color: #fff;
+        background-image: url("/back.jpg");
+        background-repeat: repeat-x;
     }
         
     .container{
@@ -18,36 +20,64 @@
         text-align:center;
     }
     .colorcode{
-        background-color: #fff;
         border: solid 2px #ccc;
         text-align: center;
-        height: 50px;
+        height: 83px;
         margin-top: 25px;
+        padding-top:17px;
+        padding-left:50px;
     }
     .log{
         background-color: #fff;
         border: solid 2px #ccc;
         margin-top: 25px;
+        display: flex;
+        flex-wrap: wrap;
+        padding-left:10px;
     }
-    
+    .hex{
+        width: 230px;
+        height: 50px;
+        border: solid 1px #ccc;
+        margin-left:10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        font-size:18px;
+    }
+    .result{
+        background-color: #fff;
+        height:50px;
+        width: 230px;
+        padding-top:15px;
+        font-size:24px;
+    }
+    .leftbox{
+        width: 100px;
+        height: 50px;
+        margin-right:10px;
+    }
+    .rightbox{
+        width: 110px;
+        height: 30px;
+        padding-top:10px;
+    }
     </style>
 </head>
 <body>
     <div class="container">
+        <img src="/logo.png">
         <div class="canvas">
             <canvas id="cnvs" width="936" height="585"></canvas>
         </div>
-        <div class="colorcode">
-            <div id="result"></div>
+        <div class="colorcode" id="colorcode">
+            <div id="result" class="result"></div>
         </div>
         <div class="log">
-            <table>
-                <% @logs.each do |log| %>
-                    <tr>
-                        <td><%= log.log %></td>
-                    </tr>
-                <% end %>
-            </table>
+            <% @logs.each do |log| %>
+                <div class="hex"><div class="leftbox" style="background-color:<%= log.log %>"></div><div class="rightbox"><%= log.log %></div></div>
+            <% end %>
         </div>
     </div>
     <script type="text/javascript">
@@ -82,6 +112,7 @@
 
         resulut = document.getElementById("result");
         resulut.innerText = hexString;
+        document.getElementById("colorcode").style.backgroundColor= hexString;
         
         var xhr= new XMLHttpRequest();
         var param = "colorcode=" + encodeURIComponent(hexString);
