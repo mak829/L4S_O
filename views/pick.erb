@@ -94,7 +94,7 @@
                 
     image.src = "<%= @pick.img_url %>";
                 
-    context.drawImage(image, 0, 0);
+    context.drawImage(image, 0, 0);　//(0,0)から取得した画像を表示
     
     var color = document.getElementById('color');
     function onClick(e) {
@@ -107,15 +107,16 @@
         
         numberInt = pixel.data;    //クリックされた要素の背景色取得
 
-        hexString = "#"+parseInt(numberInt[0]).toString(16)+parseInt(numberInt[1]).toString(16)+parseInt(numberInt[2]).toString(16);
+        hexString = "#"+parseInt(numberInt[0]).toString(16)+parseInt(numberInt[1]).toString(16)+parseInt(numberInt[2]).toString(16);　//16進数に変換して連結
 
         hexString= hexString.toUpperCase();    // hexStringを大文字に変換
 
         resulut = document.getElementById("result");
         resulut.innerText = hexString;
-        document.getElementById("colorcode").style.backgroundColor= hexString;
+        document.getElementById("colorcode").style.backgroundColor= hexString;    //背景に色を表示
         
-        var xhr= new XMLHttpRequest();
+        
+        var xhr= new XMLHttpRequest();    
         var param = "colorcode=" + encodeURIComponent(hexString);
         console.log("param", hexString, param);
         xhr.open("POST","/logs?"+param);
